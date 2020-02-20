@@ -1,0 +1,104 @@
+\section*{2.1}
+コアとクラッドの屈性率比が1\%であるガラス平面導波路を考える．
+波長1.5${\rm \mu m}$の光に対してシングルモード導波路となるコア厚の条件を求めよ．
+ガラスの屈折率は1.5とする．
+天下りの知識（e.g.,規格化周波数）に依る解答は不可．
+あるいは，本章に書かれていない条件式を使う場合は，その条件式の根拠を述べること．
+
+\subsection*{解答}
+\noindent
+コアの$x$方向への空間的振動の伝搬定数$k_x$とすると
+\begin{eqnarray*}
+    \sqrt{\frac{(n_1^2-n_2^2)k_0^2}{k_x^2}-1}=\tan\left(k_x\left(\frac{d}{2}\right)+\frac{\pi}{2}\right)
+\end{eqnarray*}
+$k_x\left(\frac{d}{2}\right)+\frac{\pi}{2}=\pi$のとき，$\sqrt{\frac{(n_1^2-n_2^2)k_0^2}{k_x^2}}=0$なので
+\begin{eqnarray*}
+    k_x\left(\frac{d}{2}\right)=\frac{\pi}{2}\\
+    k_x=\frac{\pi}{d}
+\end{eqnarray*}
+これを代入して
+\begin{eqnarray*}
+    \sqrt{\frac{(n_1^2-n_2^2)k_0^2}{\left(\frac{\pi}{d}\right)^2}-1}=0\\
+    (n_1^2-n_2^2)k_0^2=\left(\frac{\pi}{d}\right)^2\\
+    d^2=\frac{\pi^2}{(n_1^2-n_2^2)k_0^2}
+\end{eqnarray*}
+$d>0$なので
+\begin{eqnarray*}
+    d=\sqrt{\frac{\pi^2}{(n_1^2-n_2^2)k_0^2}}
+\end{eqnarray*}
+$k_0=\frac{2\pi}{\lambda}$より，上式に代入して
+\begin{eqnarray*}
+    d<\frac{\lambda}{2}\sqrt{\frac{1}{n_1^2-n_2^2}}
+\end{eqnarray*}
+となる\\
+これに$n_1=1.5$，$n_2=\frac{1.5}{1.01}$，$\lambda=1.5$を代入して
+\begin{eqnarray*}
+    d<3.56[{\rm \mu m}]
+\end{eqnarray*}
+
+\section*{2.2}
+光ファイバなどの光導波路では，わずかながら光がクラッド領域に漏れ出している．
+前問のシングルモード平面導波路において，漏れ出し光の強度が，コアとクラッドの境界面での強度の１/eとなる境界面から距離を求めよ．
+ただし簡単のため，$k_z \fallingdotseq n_1k_0$とする（$n_1$：コア屈折率，$k_0$：真空中伝搬定数，$k_z$ ：伝搬方向の伝搬定数）．
+
+\subsection*{解答}
+\noindent
+境界面が$x=\frac{d}{2}$となるように$x$座標を設定する\\
+境界面における光電場$E(x)$は
+\begin{eqnarray*}
+    E(\frac{d}{2})=A\exp(-\frac{d}{2}\sqrt{k_z^2-n_2^2k_0^2})
+\end{eqnarray*}
+このときの光強度は
+\begin{eqnarray*}
+    E^2(\frac{d}{2})=A^2\exp(-d\sqrt{k_z^2-n_2^2k_0^2})
+\end{eqnarray*}
+境界面での強度の１/eとなる距離を$l$とおくと
+\begin{eqnarray*}
+    E^2(\frac{d}{2}+l)&=&\frac{1}{e}E^2(\frac{d}{2})\\
+    eE^2(\frac{d}{2}+l)&=&E^2(\frac{d}{2})\\
+    \exp(1-(d+2l)\sqrt{k_z^2-n_2^2k_0^2})&=&\exp(-d\sqrt{k_z^2-n_2^2k_0^2}\\
+    1-(d+2l)\sqrt{k_z^2-n_2^2k_0^2}&=&-d\sqrt{k_z^2-n_2^2k_0^2}\\
+\end{eqnarray*}
+$k_z^2-n_2^2k_0^2 \neq 0$より
+\begin{eqnarray*}
+    l&=&\frac{1}{2\sqrt{k_z^2-n_2^2k_0^2}}\\
+    &\fallingdotseq&\frac{1}{2\sqrt{n_1^2k_0^2-n_2^2k_0^2}}\\
+    &=&\frac{1}{2n_1k_0\sqrt{1-\frac{1}{1.01}}}\\
+    &=&\frac{\sqrt{101}}{20n_1k_0}
+\end{eqnarray*}
+
+\section*{2.3}
+光ファイバの伝播損失は，波長1.55${\rm \mu m}$において，約0.2dB/kmである．
+伝播光パワーがファイバ入力時の2\%となる距離はいくらか．
+導出過程も記すこと．
+
+\subsection*{解答}
+\noindent
+求める距離を$l$とおくと，損失は0.2$l$より
+\begin{eqnarray*}
+    -0.2l&=&10\log{10}(\frac{2}{100})\\
+    &=&10(\log{10}2-2)\\
+    0.2l&=&20-10\log{10}2\\
+    l&=&100-50\log{10}2\\
+    &=&85[{\rm km}]
+\end{eqnarray*}
+
+\section*{2.4}
+本章で述べた現象により，夕焼けは赤く見える．
+このことについて説明せよ．
+
+\subsection*{解答}
+日中では，波長の短い青い光は細かいチリにぶつかりやすいため，光が散乱する．
+このように，青い光が上空で散乱するため青く見える．
+一方，太陽が西に沈んでいくと，太陽光はより長い距離の空気層を通過することとなる．
+そのため，波長が長い赤い光も細かいチリにぶつかり散乱し始める．
+しかし，青い光は波長が短いため届かなくなり，結果的に夕焼けは赤く見える．
+
+\section*{2.5}
+本章で述べた現象により，雨上がりの空に虹が見える．
+このことについて説明せよ．
+
+\subsection*{解答}
+雨上がりでは，大気中に水滴が多く存在する．
+その水滴がプリズムの役割をし，太陽光がその水滴の中を通過する際に屈折することで，太陽光が分解されて複数色の帯に見える．
+これが虹が見える仕組みである．

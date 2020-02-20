@@ -1,0 +1,34 @@
+PWD c:/Users/naoki/Documents/VS Code git/2seme/Tue_1
+INPUT c:/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT c:/Users/naoki/Documents/VS Code git/2seme/Tue_1/main.tex
+OUTPUT main.log
+INPUT c:/texlive/2018/texmf-dist/tex/platex/jsclasses/jsarticle.cls
+INPUT c:/texlive/2018/texmf-dist/tex/platex/jsclasses/jsarticle.cls
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics/graphicx.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics/graphicx.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics/graphics.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics/graphics.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics/trig.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics/trig.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics-def/pdftex.def
+INPUT c:/texlive/2018/texmf-dist/tex/latex/graphics-def/pdftex.def
+INPUT c:/texlive/2018/texmf-dist/tex/latex/tools/bm.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/tools/bm.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/here/here.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/here/here.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/float/float.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/float/float.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/comment/comment.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/comment/comment.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/listings/listings.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/listings/listings.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/listings/lstmisc.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/listings/lstmisc.sty
+INPUT c:/texlive/2018/texmf-dist/tex/latex/listings/listings.cfg
+INPUT c:/texlive/2018/texmf-dist/tex/latex/listings/listings.cfg
+INPUT jlisting.sty
+INPUT jlisting.sty

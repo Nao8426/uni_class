@@ -1,0 +1,113 @@
+\section*{プログラム}
+\begin{lstlisting}[caption=数値シミュレーションプログラム]
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import os
+    from tqdm import tqdm
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+
+    # コインを投げてc_1, c_rand, c_minを求める
+    # trial : 試行回数
+    # t_num : コイン1枚に対する試行回数
+    # c_num : コインの枚数
+    def coin(trial, t_num, c_num):
+        c_1 = []
+        c_rand = []
+        c_min = []
+
+        print('トス開始')
+        for _ in tqdm(range(trial)):
+            front = np.random.binomial(t_num, 0.5, size=c_num)
+            f_rate = front / t_num
+            c_1.append(f_rate[0])
+            rnd = np.random.randint(0, c_num)
+            c_rand.append(f_rate[rnd])
+            c_min.append(min(f_rate))
+        print('トス終了')
+
+        return c_1, c_rand, c_min
+
+
+    # グラフの計算
+    def prob(data):
+        elem = 1000
+        data_num = len(data)
+
+        x = np.linspace(0, 1, elem)
+        y = []
+
+        print('グラフ計算開始')
+        for i in tqdm(x):
+            num = 0
+            for d in data:
+                if abs(d - 0.5) > i:
+                    num += 1
+            rate = num / data_num
+            y.append(rate)
+        print('グラフ計算終了')
+
+        return x, y
+
+
+    # Hoeffding
+    def hoeffding():
+        n = 10
+        elem = 1000
+
+        x = np.linspace(0, 1, elem)
+        y = []
+
+        print('Hoeffdingの計算開始')
+        for i in tqdm(x):
+            ans = 2*np.e**(-2*i**2*n)
+            y.append(ans)
+        print('Hoeffdingの計算終了')
+
+        return x, y
+
+
+    if __name__ == '__main__':
+        os.makedirs('./hist', exist_ok=True)
+
+        # 課題3
+        c_1, c_rand, c_min = coin(100000, 10, 1000)
+
+        fig = plt.figure(1)
+        plt.hist(c_1, bins=11, range=(-0.05, 1.05), rwidth=0.7)
+        plt.xticks([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
+        fig.savefig('./hist/c_1.png')
+        fig = plt.figure(2)
+        plt.hist(c_rand, bins=11, range=(-0.05, 1.05), rwidth=0.7)
+        plt.xticks([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
+        fig.savefig('./hist/c_rand.png')
+        fig = plt.figure(3)
+        plt.hist(c_min, bins=11, range=(-0.05, 1.05), rwidth=0.7)
+        plt.xticks([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
+        fig.savefig('./hist/c_min.png')
+
+        # 課題4
+        a, b = hoeffding()
+        x, y = prob(c_1)
+        fig = plt.figure(4)    
+        plt.plot(x, y)
+        plt.plot(a, b)
+        fig.savefig('./hist/Hoeffding_c1.png')
+        x, y = prob(c_rand)
+        fig = plt.figure(5)    
+        plt.plot(x, y)
+        plt.plot(a, b)
+        fig.savefig('./hist/Hoeffding_crand.png')
+        x, y = prob(c_min)
+        fig = plt.figure(6)    
+        plt.plot(x, y)
+        plt.plot(a, b)
+        fig.savefig('./hist/Hoeffding_cmin.png')
+
+        # 課題5
+        c_1_500, c_rand_500, c_min_500 = coin(100000, 500, 1000)
+        fig = plt.figure(7)
+        plt.hist(c_min_500, bins=11, range=(-0.05, 1.05), rwidth=0.7)
+        plt.xticks([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
+        fig.savefig('./hist/c_min_500.png')
+\end{lstlisting}

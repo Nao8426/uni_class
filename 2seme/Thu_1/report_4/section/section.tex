@@ -1,0 +1,140 @@
+\section*{4.1}
+$媒質長=10{\rm m}$で$信号利得=20{\rm dB}$の増幅媒質がある．
+1m当たりの増倍率は線形単位（$x$倍）でいくらか．
+但し，反転分布量は媒質長にわたって一様とする．
+
+\subsection*{解答}
+\noindent
+1mあたりの増倍率は$\frac{20}{10}=2.0[{\rm dB}]$\\
+線形変換すると
+\begin{eqnarray*}
+    2&=&10\log_{10}{x}\\
+    x&=&10^\frac{1}{5}
+\end{eqnarray*}
+よって，$x=10^\frac{1}{5}$[倍]
+
+\section*{4.2}
+二準位媒質（上準位数$N_2$，下準位数$N_1$）における光子数$n$の時間変化は次式に従う．
+\begin{align*}
+\frac{dn}{dt}&=a(n+1)N_2-anN_1 & \left(\begin{array}{l}anN_1:吸収確率\\anN_2:誘導放出確率\\aN_2:自然放出確率\end{array}\right)
+\end{align*}
+\begin{enumerate}
+    \renewcommand{\labelenumi}{(\alph{enumi})}
+    \item 初期値を$n(0)$として，時刻$t=T$における光子数を導け．
+          但し，反転分布は一定とする．
+    \item $T$を光増幅器の入力端から出力端までの伝播時間とすれば，上記は増幅器への入力光子数が$n(0)$のときの出力光子数となる．
+          出力光子を信号増幅光子とASE光子とに分けて表せ．
+    \item 出力光子数を信号利得$G$及び$\{N_1, N_2\}$で表せ．
+    \item 以上より，光増幅器から出力されるASE光強度を$\{G, N_1, N_2, hf\}$で表せ．
+\end{enumerate}
+
+\subsection*{解答}
+\begin{enumerate}
+    \renewcommand{\labelenumi}{(\alph{enumi})}
+    \item
+    \begin{eqnarray*}
+        \frac{dn}{dt}=a(N_2-N_1)n+aN_2\\
+        \frac{dn}{a(N_2-N_1)n+aN_2}=dt
+    \end{eqnarray*}
+    積分を行うと
+    \begin{eqnarray*}
+        \frac{1}{a(N_2-N_1)}\log{\{a(N_2-N_1)n+aN_2\}}=t+C
+    \end{eqnarray*}
+    ただし，$C$は積分定数\\
+    ここで，$t=0$とおくと
+    \begin{eqnarray*}
+        C=\frac{1}{a(N_2-N_1)}\log{\{a(N_2-N_1)n(0)+aN_2\}}
+    \end{eqnarray*}
+    これを代入して
+    \begin{eqnarray*}
+        \frac{1}{a(N_2-N_1)}\log{\{a(N_2-N_1)n(t)+aN_2\}}&=&t+\frac{1}{a(N_2-N_1)}\log{\{a(N_2-N_1)n(0)+aN_2\}}\\
+        \log{\{a(N_2-N_1)n(t)+aN_2\}}&=&a(N_2-N_1)t+\log{\{a(N_2-N_1)n(0)+aN_2\}}\\
+        e^{a(N_2-N_1)t}&=&\frac{a(N_2-N_1)n(t)+aN_2}{a(N_2-N_1)n(0)+aN_2}
+    \end{eqnarray*}
+    よって
+    \begin{eqnarray*}
+        n(t)&=&\frac{1}{a(N_2-N_1)}\left[e^{a(N_2-N_1)t}\{a(N_2-N_1)n(0)+aN_2\}-aN_2\right]\\
+        &=&\left\{n(0)+\frac{N_2}{N_2-N_1}\right\}e^{a(N_2-N_1)t}-\frac{N_2}{N_2-N_1}
+    \end{eqnarray*}
+    $t=T$として
+    \begin{eqnarray*}
+        n(T)=\left\{n(0)+\frac{N_2}{N_2-N_1}\right\}e^{a(N_2-N_1)T}-\frac{N_2}{N_2-N_1}
+    \end{eqnarray*}
+    \item
+    (a)より，$n(T)=n(0)e^{a(N_2-N_1)T}+\frac{N_2}{N_2-N_1}\left(e^{a(N_2-N_1)T}-1\right)$
+    \item
+    信号利得$G$は，増幅器の長さを$L$，高速を$c$として
+    \begin{eqnarray*}
+        G=e^{a(N_2-N_1)\frac{L}{c}}
+    \end{eqnarray*}
+    このとき，$\frac{L}{c}=T$であるので
+    \begin{eqnarray*}
+        G=e^{a(N_2-N_1)T}
+    \end{eqnarray*}
+    ゆえに，出力光子数$n(T)$は
+    \begin{eqnarray*}
+        n(T)=n(0)G+\frac{N_2}{N_2-N_1}(G-1)
+    \end{eqnarray*}
+    \item
+    1光子あたりのエネルギーが$hf$であるので\\
+    ASE光パワー$P_{\rm ASE}$は
+    \begin{eqnarray*}
+        P_{\rm ASE}=\frac{N_2}{N_2-N_1}(G-1)hf
+    \end{eqnarray*}
+\end{enumerate}
+
+\section*{4.3}
+光増幅器で増幅された信号光を光バンドパスフィルタに通した後，直接受信して電気信号に変換すると，受信信号は揺らいでいる．
+\begin{enumerate}
+    \renewcommand{\labelenumi}{(\alph{enumi})}
+    \item 揺らぎの要因はいくつかに分類分けできる．
+          各要因の特徴を述べよ．
+    \item どの揺らぎ要因が主となるかは光フィルタの透過帯域幅に依存する．
+          どのように依存するか，理由を含めて述べよ．
+\end{enumerate}
+
+\subsection*{解答}
+\begin{enumerate}
+    \renewcommand{\labelenumi}{(\alph{enumi})}
+    \item
+    \begin{itemize}
+        \item 増幅信号光のショット雑音
+        \item ASEによるショット雑音
+    \end{itemize}
+    光の量子的な揺らぎに起因し，ばらつきはポアソン分布に従う．
+    光子数$N$のときショットノイズは$\sqrt{N}$となる．
+    \begin{itemize}
+        \item 増幅信号光 ー ASE間のビート雑音
+    \end{itemize}
+    信号光と自然放出光の干渉により生じる雑音．
+    信号光と雑音が同じ帯域にある．
+    \begin{itemize}
+        \item ASE ー ASE間のビート雑音
+    \end{itemize}
+    自然放出光同士の干渉により生じる雑音．
+    ASE光の帯域に大きく依存する．
+    \item
+    信号帯域と光フィルタの透過帯域幅が等しければ，「増幅信号光 ー ASE間のビート雑音」以外の雑音は除去できるため，これが主となる．
+    それ以外の場合は「ASE ー ASE間のビート雑音」が主となる．
+\end{enumerate}
+
+\section*{4.4}
+光ファイバ増幅器は，増幅用ファイバと光アイソレータおよび励起光を入射するための波長合分波器から構成されている．
+増幅用ファイバ部でのNFが4dB，入力側の$波長合波器+光アイソレータ$の信号光透過率が0.7，出力側の$波長合波器+光アイソレータ$の信号光透過率が0.6であるとき，光増幅器全体のNFはいくらか．
+
+\subsection*{解答}
+\noindent
+入力側のNFは$10\log_{10}{\frac{10}{7}}$\\
+増幅器のNFは4\\
+出力側のNFは$10\log_{10}{\frac{10}{6}}$\\
+よって，全体のNFは
+\begin{eqnarray*}
+    10\log_{10}{\frac{10}{7}}+4+10\log_{10}{\frac{10}{6}}\fallingdotseq 7.77[{\rm dB}]
+\end{eqnarray*}
+
+\section*{4.5}
+光ファイバ増幅器は，ポンプ光パワーが大きいほど利得飽和しにくい．
+その理由を説明せよ．
+
+\subsection*{解答}
+ポンプ光により反転分布が大きくなるから．
