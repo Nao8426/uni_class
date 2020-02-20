@@ -1,0 +1,83 @@
+\section*{問題1}
+等価低域系について説明し，移動体通信において伝搬路の周波数伝達関数が与えられた際の受信信号の時間波形とスペクトルがどのように表されるのかを，式を用いて論理的に説明せよ．
+なお各波形の記述方法は適宜定義せよ．
+また，受信信号の時間波形やスペクトルを導出する際，等価低域系を用いる意義について説明せよ．
+
+\subsubsection*{レポート}
+\begin{comment}
+等価低域系とは，複素搬送波を除いた通信システムであり，変調について検討するときなどに用いられる．
+以下において等価低域系を用いる意義について示す．\par
+まず現実の送受信システムについて述べる．\par
+変調器によって変調されたディジタル信号を$Ae^{j\phi[k]}$とおくと，このディジタル信号はD-A変換によってアナログ信号$Ae^{j\phi(t)}$へと変換される．\par
+ここで搬送波を$e^{j2\pi ft}$とおくと，送信信号$s(t)$は
+\begin{eqnarray}
+    s(t)&=&{\rm Re}[Ae^{j\phi(t)}e^{j2\pi ft}]\\
+    &=&{\rm Re}[Ae^{j(2\pi ft+\phi(t))}]\\
+    &=&{\rm Re}[A\cos{(2\pi ft+\phi(t))}+j\sin{(2\pi ft+\phi(t))}]\\
+    &=&A\cos{(2\pi ft+\phi(t))}
+\end{eqnarray}
+とできる．\par
+等価低域系においてはすべてディジタル信号なので
+\end{comment}
+\begin{comment}
+等価低域系において，送信信号を$u(t)$，周波数伝達関数を$h(t)$とおくと，受信信号$v(t)$は
+\begin{equation}
+    v(t)=h(t)\otimes u(t)
+\end{equation}
+となる．\par
+これをフーリエ変換すると，周波数スペクトル$V(f)$は
+\begin{eqnarray}
+    V(f)&=&\int_{-\infty}^{\infty}(h(t)\otimes u(t))e^{-j2\pi ft} dt\\
+    &=&\int_{-\infty}^{\infty}\left(\int_{-\infty}^{\infty}h(\tau)u(t-\tau) d\tau\right)e^{-j2\pi ft} dt\\
+    &=&\int_{-\infty}^{\infty}h(\tau)e^{-j2\pi f\tau} d\tau\bullet\int_{-\infty}^{\infty}u(t-\tau)e^{-j2\pi f(t-\tau)} dt\\
+    &=&H(f)U(f)
+\end{eqnarray}
+とできる．
+\end{comment}
+等価低域系とは，複素搬送波を除いた通信システムである．
+以下において等価低域系を用いる意義について示す．\par
+一般的に，帯域信号は$s(t)=A(t)\cos{(2\pi f_ct+\theta(t))}$とおける．
+ここで，$A(t)$は振幅，$\theta(t)$は位相，$f_c$は搬送波周波数を表す．\par
+この式は，$I$，$Q$の複素平面上で表現される帯域信号$u_I(t)+ju_Q(t)$を用いて
+\begin{equation}
+    s(t)={\rm Re}\left[(u_I(t)+ju_Q(t))e^{j2\pi f_ct}\right]
+    \label{baseband}
+\end{equation}
+と表すことができる．\par
+この式の右辺において，$(u_I(t)+ju_Q(t))e^{j2\pi f_ct}$の部分は，複素基底帯域信号$u(t)=u_I(t)+ju_Q(t)$を用いて複素搬送波$e^{j2\pi f_ct}$を変調したものと見なせるので，式(\ref{baseband})の右辺を変形して
+\begin{equation}
+    s(t)=\frac{1}{2}\{u(t)e^{j2\pi f_ct}+u^*(t)e^{-j2\pi f_ct}\}
+\end{equation}
+とできる．\par
+フーリエ変換を用いると，$s(t)$の周波数スペクトル$S(f)$は
+\begin{eqnarray}
+    S(f)&=&\frac{1}{2}\int_{-\infty}^{\infty} \{u(t)e^{j2\pi f_ct}+u^*(t)e^{-j2\pi f_ct}\}e^{-j2\pi ft} dt\\
+    &=&\frac{1}{2}\int_{-\infty}^{\infty} u(t)e^{-j2\pi(f-f_c)t} dt+\frac{1}{2}\int_{-\infty}^{\infty} u^*(t)e^{-j2\pi(f+f_c)t} dt\\
+    &=&\frac{1}{2}\int_{-\infty}^{\infty} u(t)e^{-j2\pi(f-f_c)t} dt+\frac{1}{2}\left[\int_{-\infty}^{\infty} u(t)e^{-j2\pi(-f-f_c)t} dt\right]^*\\
+    &=&\frac{1}{2}\{U(f-f_c)+U^*(-f-f_c)\}
+\end{eqnarray}
+となる．\par
+ただし，$U(f)$は$u(t)$の周波数スペクトルであり，$u_I(t)$および$u_Q(t)$の周波数スペクトル$U_I(f)$，$U_Q(f)$を用いると
+\begin{equation}
+    U(f)=U_I(f)+jU_Q(f)
+\end{equation}
+という関係が得られる．\par
+以上の関係を線形系に応用する．\par
+信号$S(f)=\frac{1}{2}\{U(f-f_c)+U^*(-f-f_c)\}$を線形帯域系$H(f-f_c)+H^*(-f-f_c)$に入力した場合に得られる出力$R(f)$は
+\begin{equation}
+    R(f)=\frac{1}{2}\{H(f-f_c)U(f-f_c)+H(-f-f_c)U^*(-f-f_c)\}
+\end{equation}
+となる．\par
+また，信号$U(f)$を等価低域系$H(f)$に入力した場合に得られる出力$R(f)$は
+\begin{equation}
+    R(f)=H(f)U(f)
+\end{equation}
+となる．\par
+また時間波形は逆フーリエ変換を用いて
+\begin{equation}
+    r(t)=h(t)\otimes u(t)
+\end{equation}
+となる．\par
+これら線形帯域系と等価低域系は等価である．\par
+このように，帯域信号が入力された線形帯域系出力は，複素基底帯域信号が入力された等価低域系出力を用いて完全に表すことができる．
+したがって，線形帯域系での信号解析は，等価低域系で考えることでより簡単に取り扱うことができる．

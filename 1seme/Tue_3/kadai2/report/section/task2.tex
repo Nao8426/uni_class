@@ -1,0 +1,80 @@
+\section{Work2}
+\subsection*{問題}
+統計的パターン認識において，確率密度関数$p(\bm{x}|C_i)$が多次元正規分布で表される場合において，以下の(a)から(c)について示す．\par
+ここで，多次元正規分布は以下の式で表される．
+\begin{equation*}
+    p(\bm{x}|C_i)=\frac{1}{(2\pi)^{d/2}\left|\bm{\sum}_i\right|^{1/2}}\exp\left\{-\frac{1}{2}(\bm{x}-m_i)^t{{\bm{\sum}}_i}^{-1}(\bm{x}-m_i)\right\}
+\end{equation*}
+\begin{enumerate}
+    \renewcommand{\labelenumi}{(\alph{enumi})}
+    \item 識別関数$g_i(\bm{x})$は$\bm{x}$の2次関数となる．
+    \item 共分散行列が全クラスで等しい($\sum_i=\sum_0$)と仮定した場合，識別関数$g_i(\bm{x})$は$\bm{x}$の一次関数，つまり線形識別関数となる．
+    \item $\sum_0$を単位行列であるとし，事前確率が各クラスで等しい（$P(C_i)=\frac{1}{c}$；$c$はクラス数）とすると，識別関数$g_i(x)$はNearest Neighbour法と同じ形になる．
+    この時のクラス$C_i$のプロトタイプがどのように求められるか示す。
+\end{enumerate}
+
+\subsection*{解答}
+\begin{enumerate}
+    \renewcommand{\labelenumi}{(\alph{enumi})}
+    \item
+    \begin{align*}
+        g_i(\bm{x})&=\log{P(\bm{x}|C_i)}+\log{P(C_i)}\\
+        &=\log{\frac{1}{(2\pi)^{d/2}\left|\bm{\sum}_i\right|^{1/2}}\exp\left\{-\frac{1}{2}(\bm{x}-m_i)^t{{\bm{\sum}}_i}^{-1}(\bm{x}-m_i)\right\}+\log{P(C_i)}}\\
+        &=-\frac{1}{2}\left\{(\bm{x}-m_i)^t{{\bm{\sum}}_i}^{-1}(\bm{x}-m_i)\right\}-\frac{d}{2}\log{2\pi}-\frac{1}{2}\log{\left|{\bm{\sum}}_i\right|}+\log{P(C_i)}
+    \end{align*}
+    よって，識別関数$g_i(\bm{x})$は$\bm{x}$の2次関数となる．
+    \item
+    クラス$i,j$に関して考えると，共分散行列が全クラスで等しいことから
+    \begin{equation*}
+        p(C_i|\bm{x})=p(C_j|\bm{x})
+    \end{equation*}
+    つまり
+    \begin{equation*}
+        p(\bm{x}|C_i)p(C_i)=p(\bm{x}|C_j)p(C_j)
+    \end{equation*}
+    両辺の対数をとって
+    \begin{equation}
+        \log{p(\bm{x}|C_i)}+\log{p(C_i)}=\log{p(\bm{x}|C_j)}+\log{p(C_j)}
+        \label{eq1}
+    \end{equation}
+    ここで$\lambda_i=\frac{1}{(2\pi)^{d/2}\left|\bm{\sum}_i\right|^{1/2}}$とおくと$p(\bm{x}|C_i)=\lambda_i\exp\left\{-\frac{1}{2}(\bm{x}-m_i)^t{{\bm{\sum}}_i}^{-1}(\bm{x}-m_i)\right\}$となるので
+    \begin{align*}
+        \log{p(\bm{x}|C_i)}&=\log{\lambda_i}-\frac{1}{2}(\bm{x}-m_i)^t{{\bm{\sum}}_i}^{-1}(\bm{x}-m_i)\\
+        &=\log{\lambda_i}-\frac{1}{2}\left\{\bm{x}^t{{\bm{\sum}}_0}^{-1}\bm{x}-2m_i^t{\bm{\sum}}^{-1}\bm{x}+m_i^t{\bm{\sum}}^{-1}m_i\right\}
+    \end{align*}
+    これを式（\ref{eq1}）に代入すると
+    \begin{align*}
+        \log\lambda_0-\frac{1}{2}\bm{x}^t{{\bm{\sum}}_0}^{-1}\bm{x}+m_i^t{{\bm{\sum}}_0}^{-1}\bm{x}-\frac{1}{2}m_i^t{{\bm{\sum}}_0}^{-1}m_i+\log{P(C_i)}\\
+        =\log\lambda_0-\frac{1}{2}\bm{x}^t{{\bm{\sum}}_0}^{-1}\bm{x}+m_j^t{{\bm{\sum}}_0}^{-1}\bm{x}-\frac{1}{2}m_j^t{{\bm{\sum}}_0}^{-1}m_j+\log{P(C_j)}
+    \end{align*}
+    よって
+    \begin{align*}
+        g(\bm{x})&=log{P(C_i|\bm{x})}-log{P(C_j|\bm{x})}\\
+        &=m_i^t{{\bm{\sum}}_0}^{-1}\bm{x}-m_j^t{{\bm{\sum}}_0}^{-1}\bm{x}-\frac{1}{2}m_i^t{{\bm{\sum}}_0}^{-1}m_i+\log{P(C_i)}+\frac{1}{2}m_i^t{{\bm{\sum}}_0}^{-1}m_i-\log{P(C_i)}\\
+        &=(m_i-m_j)^t{{\bm{\sum}}_0}^{-1}\bm{x}+\left\{-\frac{1}{2}m_i^t{{\bm{\sum}}_0}^{-1}m_i+\log{P(C_i)}+\frac{1}{2}m_i^t{{\bm{\sum}}_0}^{-1}m_i-\log{P(C_i)}\right\}
+    \end{align*}
+    よって，識別関数$g_i(\bm{x})$は線形識別関数となる．
+    \item
+    \begin{align*}
+        g_i(\bm{x})&=\log{P(C_i|\bm{x})}\\
+        &=\log{P(\bm{x}|C_i)}+\log{P(C_i)}\\
+        &=\log{P(\bm{x}|C_i)}-\log{c}
+    \end{align*}
+    ここで，$\sum_0$が単位行列，事前確率が各クラスで等しいということから
+    \begin{align*}
+        \log{P(\bm{x}|C_i)}&=\log\lambda_i-\frac{1}{2}(\bm{x}-m_i)^t{\bm{\sum}}_i^{-1}(\bm{x}-m_i)\\
+        &=\log{\lambda_0}-\frac{1}{2}||\bm{x}-m_i||^2
+    \end{align*}
+    よって
+    \begin{align*}
+        g_i(\bm{x})&=\log{P(\bm{x}|C_i)}-\log{c}\\
+        &=\log{\lambda_0}-\frac{1}{2}||\bm{x}-m_i||^2-\log{c}\\
+        &=-\frac{1}{2}||\bm{x}-m_i||^2+\log{\frac{\lambda_0}{c}}
+    \end{align*}
+    ゆえに
+    \begin{align*}
+        \argmax_i{g_i(\bm{x})}&=\argmax_i\left\{-\frac{1}{2}||\bm{x}-m_i||^2+\log{\frac{\lambda_0}{c}}\right\}\\
+        &=\argmax_i\left\{-||\bm{x}-m_i||^2\right\}\\
+        &=\argmin_i\left\{||\bm{x}-m_i||^2\right\}
+    \end{align*}
+\end{enumerate}
